@@ -1,0 +1,60 @@
+/* ============================================================
+   base.css — reset + basisstijl (typografie, knoppen, links)
+   Bouwt voort op de variabelen uit tokens.css.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--kleur-achtergrond);
+  color: var(--kleur-navy);
+  font-family: var(--font-tekst);
+  font-size: var(--tekst-basis);
+  line-height: var(--lijnhoogte);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titel);
+  color: var(--kleur-navy);
+  line-height: 1.12;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--kleur-navy); text-decoration: none; }
+a:hover { color: var(--kleur-accentrood); }
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+/* Toegankelijkheid: zichtbare focus voor toetsenbordgebruik */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--kleur-accentrood);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Basisknop (verfijnen we later met varianten) */
+.knop {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ruimte-xs);
+  font-family: var(--font-tekst);
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--hoek);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.knop--primair { background: var(--kleur-accentrood); color: #fff; }
+.knop--secundair { background: transparent; color: var(--kleur-navy); border-color: var(--kleur-zilver); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

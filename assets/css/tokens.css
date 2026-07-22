@@ -1,0 +1,36 @@
+/* ============================================================
+   tokens.css — de "merkvariabelen" van Lumen Security
+   Eén centrale plek voor alle vaste kleuren, fonts en maten.
+   Een waarde hier aanpassen werkt overal op de site tegelijk door.
+   ============================================================ */
+
+:root {
+  /* --- Merkkleuren (VASTE merkregels) --- */
+  --kleur-navy:        #0E2A47; /* hoofdkleur: titels, header, tekst */
+  --kleur-zilver:      #B9BCBE; /* lichte lijnen, subtiele vlakken */
+  --kleur-staalgrijs:  #9BA0A3; /* secundaire tekst, bijschriften */
+  --kleur-accentrood:  #C0392B; /* accenten, knoppen, beacon-dot */
+  --kleur-achtergrond: #F7F6F3; /* paginagrond (gebroken wit) */
+  --kleur-donkerrood:  #8B1A1A; /* ALLEEN voor schaduw/gradiënt, niet als vlakkleur */
+
+  /* Handige afgeleiden (transparante versies voor schaduw/gloed) */
+  --rood-gloed:  rgba(192, 57, 43, 0.18);
+  --navy-schaduw: rgba(14, 42, 71, 0.12);
+
+  /* --- Lettertypes (VASTE merkregels) --- */
+  --font-titel: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; /* koppen */
+  --font-tekst: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;  /* lopende tekst */
+
+  /* --- Typografische schaal (rustig, zakelijk) --- */
+  --tekst-basis: 17px;
+  --lijnhoogte:  1.6;
+
+  /* --- Ruimte & vorm (voor consistente marges/afronding) --- */
+  --ruimte-xs: 8px;
+  --ruimte-s:  16px;
+  --ruimte-m:  28px;
+  --ruimte-l:  48px;
+  --ruimte-xl: 80px;
+  --hoek:      10px;   /* standaard hoekafronding */
+  --max-breed: 1200px; /* max. inhoudsbreedte */
+}

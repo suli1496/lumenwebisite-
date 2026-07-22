@@ -1,0 +1,12 @@
+/* ============================================================
+   layout.css — header, footer en algemene pagina-opbouw
+   (Nog leeg: we vullen dit in zodra variant B is gekozen/gelezen.)
+   ============================================================ */
+
+/* Centrale inhoudsbreedte, herbruikbaar op elke pagina */
+.omhulsel {
+  width: 100%;
+  max-width: var(--max-breed);
+  margin: 0 auto;
+  padding: 0 var(--ruimte-m);
+}
