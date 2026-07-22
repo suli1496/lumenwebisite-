@@ -1,9 +1,16 @@
 /* ============================================================
-   tokens.css — merkvariabelen + lettertypes van Lumen Security
+   tokens.css — merkvariabelen, lettertypes én dag/nacht-thema
    Eén centrale plek. Een waarde hier aanpassen werkt overal door.
+
+   OPZET:
+   - Merkkleuren staan VAST (navy, rood, zilver, staalgrijs).
+   - Thema-tokens (achtergrond, tekst, vlakken) draaien om tussen
+     dag (licht) en nacht (donker) — "gespiegeld".
+   - Standaard = dag. Nacht wordt geactiveerd door:
+       * het systeem (prefers-color-scheme: dark), of
+       * een handmatige keuze via de schakelaar -> <html data-theme="dark">.
    ============================================================ */
 
-/* --- Lettertypes: lokaal opgeslagen (geen Google Fonts = privacyvriendelijk) --- */
 @font-face{
   font-family:"Space Grotesk";
   font-style:normal;
@@ -20,20 +27,123 @@
 }
 
 :root{
-  /* --- Merkkleuren (VASTE merkregels) --- */
-  --navy:#0E2A47;     /* hoofdkleur: titels, header, footer, tekst */
-  --red:#C0392B;      /* accent: knoppen, beacon-dot, links */
-  --deepred:#8B1A1A;  /* ALLEEN voor schaduw/gradiënt (bv. lichtbundel) */
-  --silver:#B9BCBE;   /* lichte lijnen, subtiele accenten */
-  --steel:#9BA0A3;    /* secundaire tekst, bijschriften */
-  --bg:#F7F6F3;       /* paginagrond (gebroken wit) */
-  --ink:#1c2530;      /* lopende tekst (iets zachter dan puur navy) */
-  --line:#e2e0da;     /* randen en scheidingslijnen */
+  /* --- VASTE merkkleuren --- */
+  --navy:#0E2A47;
+  --red:#C0392B;
+  --deepred:#8B1A1A;
+  --silver:#B9BCBE;
+  --steel:#9BA0A3;
 
   /* --- Lettertypes --- */
-  --ft-titel:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; /* koppen */
-  --ft-tekst:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;  /* lopende tekst */
+  --ft-titel:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ft-tekst:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* --- Maten --- */
-  --max:1240px;       /* max. inhoudsbreedte */
+  --max:1240px;
+
+  /* ============ DAG-THEMA (standaard) ============ */
+  --bg:#F7F6F3;             /* paginagrond (gebroken wit) */
+  --ink:#1c2530;            /* lopende tekst */
+  --text-soft:#4a4a48;      /* zachtere tekst */
+  --surface:#ffffff;        /* opgetild vlak (diensten-sectie, kaarten-contrast) */
+  --surface-sunken:#F7F6F3; /* verzonken vlak (kaart-achtergrond) */
+  --line:#e2e0da;           /* randen/lijnen */
+  --header-bg:rgba(247,246,243,.82); /* doorschijnende header over de hero */
+  --logo-ink:#0E2A47;       /* de navy delen van het nav-logo */
+
+  /* Contrast-eiland ("Waarom Lumen"): in dag = donker navy-blok */
+  --panel-bg:#0E2A47;
+  --panel-text:#ffffff;
+  --panel-soft:#c9d2dc;
+  --panel-eyebrow:#B9BCBE;
+
+  /* Footer */
+  --footer-bg:#0E2A47;
+  --footer-text:#c9d2dc;
+  --footer-head:#ffffff;
+  --footer-line:rgba(255,255,255,.12);
+
+  /* Knoppen (ghost past zich aan het thema aan) */
+  --ghost-border:#0E2A47;
+  --ghost-text:#0E2A47;
+  --ghost-hover:rgba(14,42,71,.06);
+
+  /* Hero-canvas (de cinematische vuurtoren-scène) */
+  --scene-top:#eef0ef;      /* bovenkant lucht */
+  --scene-bottom:#F7F6F3;   /* onderkant lucht */
+  --scene-tower:#0e2a47;    /* silhouet van de toren */
+  --scene-particle:14,42,71;/* deeltjes-kleur (RGB) */
+  --scene-beam-strong:.30;  /* bundel-intensiteit aan de bron */
 }
+
+/* ============ NACHT-THEMA (gespiegeld) ============ */
+/* 1) volgt automatisch het systeem ... */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#07131f;
+    --ink:#eaf0f6;
+    --text-soft:#9fb0c1;
+    --surface:#0a1a2b;
+    --surface-sunken:#0f2334;
+    --line:#1c3348;
+    --header-bg:rgba(7,19,31,.78);
+    --logo-ink:#eaf0f6;
+
+    /* Contrast-eiland keert om: in nacht = licht blok */
+    --panel-bg:#F7F6F3;
+    --panel-text:#0E2A47;
+    --panel-soft:#4a4a48;
+    --panel-eyebrow:#9BA0A3;
+
+    --footer-bg:#04101c;
+    --footer-text:#9fb0c1;
+    --footer-head:#ffffff;
+    --footer-line:rgba(255,255,255,.10);
+
+    --ghost-border:rgba(234,240,246,.7);
+    --ghost-text:#eaf0f6;
+    --ghost-hover:rgba(255,255,255,.08);
+
+    --scene-top:#173a5c;
+    --scene-bottom:#04101c;
+    --scene-tower:#020a12;
+    --scene-particle:232,180,160;
+    --scene-beam-strong:.42;
+  }
+}
+
+/* 2) ... of via de handmatige schakelaar (wint altijd) */
+:root[data-theme="dark"]{
+  --bg:#07131f;
+  --ink:#eaf0f6;
+  --text-soft:#9fb0c1;
+  --surface:#0a1a2b;
+  --surface-sunken:#0f2334;
+  --line:#1c3348;
+  --header-bg:rgba(7,19,31,.78);
+  --logo-ink:#eaf0f6;
+
+  --panel-bg:#F7F6F3;
+  --panel-text:#0E2A47;
+  --panel-soft:#4a4a48;
+  --panel-eyebrow:#9BA0A3;
+
+  --footer-bg:#04101c;
+  --footer-text:#9fb0c1;
+  --footer-head:#ffffff;
+  --footer-line:rgba(255,255,255,.10);
+
+  --ghost-border:rgba(234,240,246,.7);
+  --ghost-text:#eaf0f6;
+  --ghost-hover:rgba(255,255,255,.08);
+
+  --scene-top:#173a5c;
+  --scene-bottom:#04101c;
+  --scene-tower:#020a12;
+  --scene-particle:232,180,160;
+  --scene-beam-strong:.42;
+}
+
+/* zachte overgang bij het wisselen */
+:root{color-scheme:light dark;}
+body{transition:background-color .4s ease, color .4s ease;}

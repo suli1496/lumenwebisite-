@@ -67,8 +67,8 @@ a:focus-visible,button:focus-visible{
 }
 .btn-red{background:var(--red);color:#fff;}
 .btn-red:hover{background:var(--deepred);}
-.btn-ghost{border-color:var(--navy);color:var(--navy);}
-.btn-ghost:hover{background:rgba(14,42,71,.06);}
+.btn-ghost{border-color:var(--ghost-border);color:var(--ghost-text);}
+.btn-ghost:hover{background:var(--ghost-hover);}
 
 /* ============================================================
    Logo-animaties (herbruikbaar op elke pagina)
