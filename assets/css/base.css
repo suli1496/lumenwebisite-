@@ -1,0 +1,88 @@
+/* ============================================================
+   base.css — reset + basisstijl (typografie, knoppen, containers)
+   Bouwt voort op de variabelen uit tokens.css.
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:var(--ft-tekst);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--ft-titel);
+  color:var(--navy);
+  line-height:1.15;
+  text-wrap:balance;
+  margin:0;
+}
+
+p{margin:0;}
+img,svg{max-width:100%;display:block;}
+
+a{color:inherit;text-decoration:none;}
+
+/* Toegankelijkheid: zichtbare focus voor toetsenbordgebruik */
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* Centrale inhoudsbreedte, herbruikbaar op elke pagina */
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 48px;
+}
+
+/* Kleine bovenkop boven een titel */
+.eyebrow{
+  font-size:12.5px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--red);
+  margin-bottom:22px;
+}
+
+/* Knoppen */
+.btn{
+  display:inline-block;
+  padding:15px 30px;
+  font-family:var(--ft-titel);
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:.3px;
+  text-decoration:none;
+  border-radius:6px;
+  border:1.5px solid transparent;
+  cursor:pointer;
+}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{background:var(--deepred);}
+.btn-ghost{border-color:var(--navy);color:var(--navy);}
+.btn-ghost:hover{background:rgba(14,42,71,.06);}
+
+/* ============================================================
+   Logo-animaties (herbruikbaar op elke pagina)
+   .lumen-pulse   — cameralens "leeft": knippert zachtjes.
+                    Gebruikt op de kleine logo's in nav + footer.
+   Het volgen-van-de-muis van de grote hero-bundel zit in main.js;
+   de bijhorende detectie-gloed staat in home.css.
+   ============================================================ */
+@keyframes lumen-pulse{
+  0%,100%{opacity:1;r:1.8px;}
+  50%{opacity:.4;r:2.2px;}
+}
+.lumen-pulse{animation:lumen-pulse 1.8s ease-in-out infinite;}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;}
+}

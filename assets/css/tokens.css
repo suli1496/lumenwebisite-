@@ -1,0 +1,39 @@
+/* ============================================================
+   tokens.css — merkvariabelen + lettertypes van Lumen Security
+   Eén centrale plek. Een waarde hier aanpassen werkt overal door.
+   ============================================================ */
+
+/* --- Lettertypes: lokaal opgeslagen (geen Google Fonts = privacyvriendelijk) --- */
+@font-face{
+  font-family:"Space Grotesk";
+  font-style:normal;
+  font-weight:500 700;
+  font-display:swap;
+  src:url("../fonts/space-grotesk.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Inter";
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap;
+  src:url("../fonts/inter.woff2") format("woff2");
+}
+
+:root{
+  /* --- Merkkleuren (VASTE merkregels) --- */
+  --navy:#0E2A47;     /* hoofdkleur: titels, header, footer, tekst */
+  --red:#C0392B;      /* accent: knoppen, beacon-dot, links */
+  --deepred:#8B1A1A;  /* ALLEEN voor schaduw/gradiënt (bv. lichtbundel) */
+  --silver:#B9BCBE;   /* lichte lijnen, subtiele accenten */
+  --steel:#9BA0A3;    /* secundaire tekst, bijschriften */
+  --bg:#F7F6F3;       /* paginagrond (gebroken wit) */
+  --ink:#1c2530;      /* lopende tekst (iets zachter dan puur navy) */
+  --line:#e2e0da;     /* randen en scheidingslijnen */
+
+  /* --- Lettertypes --- */
+  --ft-titel:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; /* koppen */
+  --ft-tekst:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;  /* lopende tekst */
+
+  /* --- Maten --- */
+  --max:1240px;       /* max. inhoudsbreedte */
+}

@@ -1,0 +1,11 @@
+# Windows-snelkoppelingen naar Downloads (niet nodig in het project)
+*.url
+
+# Besturingssysteem-rommel
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor/tijdelijke bestanden
+*~
+*.tmp
