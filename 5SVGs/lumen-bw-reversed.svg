@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 500" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1400" height="500" fill="#f7f6f3"/>
+  <text x="700" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#2a2a28">Black &amp; White / Reversed Versions</text>
+
+  <!-- VERSION A: Pure black on white -->
+  <g transform="translate(230,270)">
+    <rect x="-190" y="-200" width="380" height="400" rx="10" fill="#ffffff" stroke="#e2e0da" stroke-width="1.5"/>
+    <text x="0" y="-176" text-anchor="middle" font-size="12" letter-spacing="1" fill="#9a9890">A — BLACK ON WHITE</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <path d="M-10,30 L-200,150 L200,150 L10,30 Z" fill="#000000" opacity="0.25"/>
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#000000" stroke-width="5"/>
+      <rect x="-23" y="98" width="46" height="52" fill="#000000"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#000000"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#000000"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#000000"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#000000"/>
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#000000" stroke-width="4"/>
+      <circle cx="0" cy="30" r="5" fill="#000000"/>
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#000000"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#000000"/>
+      <circle cx="0" cy="-13" r="5" fill="#000000"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#000000">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#000000">SECURITY</text>
+  </g>
+
+  <!-- VERSION B: Pure white on black (reversed) -->
+  <g transform="translate(700,270)">
+    <rect x="-190" y="-200" width="380" height="400" rx="10" fill="#0a0a0a"/>
+    <text x="0" y="-176" text-anchor="middle" font-size="12" letter-spacing="1" fill="#8a8d92">B — WHITE ON BLACK (reversed)</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <path d="M-10,30 L-200,150 L200,150 L10,30 Z" fill="#ffffff" opacity="0.2"/>
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#ffffff" stroke-width="5"/>
+      <rect x="-23" y="98" width="46" height="52" fill="#ffffff"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#ffffff"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#ffffff"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#ffffff"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#ffffff"/>
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="0" cy="30" r="5" fill="#ffffff"/>
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#ffffff"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#ffffff"/>
+      <circle cx="0" cy="-13" r="5" fill="#ffffff"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#ffffff">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#e0e0e0">SECURITY</text>
+  </g>
+
+  <!-- VERSION C: Reversed, keeping red dot as the only color accent -->
+  <g transform="translate(1170,270)">
+    <rect x="-190" y="-200" width="380" height="400" rx="10" fill="#0a0a0a"/>
+    <text x="0" y="-176" text-anchor="middle" font-size="12" letter-spacing="1" fill="#8a8d92">C — REVERSED + RED ACCENT KEPT</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <path d="M-10,30 L-200,150 L200,150 L10,30 Z" fill="#ffffff" opacity="0.2"/>
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#ffffff" stroke-width="5"/>
+      <rect x="-23" y="98" width="46" height="52" fill="#ffffff"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#ffffff"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#ffffff"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#ffffff"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#ffffff"/>
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#0a0a0a" stroke-width="3"/>
+      <circle cx="0" cy="30" r="5" fill="#0a0a0a"/>
+      <circle cx="-1.5" cy="27.5" r="1.5" fill="#ffffff" opacity="0.8"/>
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#ffffff"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#ffffff"/>
+      <!-- red dot kept as the one accent color -->
+      <circle cx="0" cy="-13" r="5" fill="#c0392b"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#ffffff">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#e0e0e0">SECURITY</text>
+  </g>
+
+</svg>

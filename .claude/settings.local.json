@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"C:\\\\Users\\\\user\\\\Desktop\\\\Lumen secutiy\" -type f 2>/dev/null)",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)",
+      "Read(//tmp/**)",
+      "Bash(awk '/\\\\/\\\\* latin \\\\*\\\\// {getline; getline; getline; getline; print; getline; print; getline; print}' fonts.css)",
+      "Bash(grep -B5 \"/\\\\* latin \\\\*/\" fonts.css)",
+      "Bash(grep -A7 \"^/\\\\* latin \\\\*/$\" fonts.css)",
+      "Bash(curl -sL -o inter-var.woff2 \"https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2\")",
+      "Bash(curl -sL -o spacegrotesk-var.woff2 \"https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4Cw.woff2\")",
+      "Bash(base64 -w0 inter-var.woff2)",
+      "Bash(base64 -w0 spacegrotesk-var.woff2)"
+    ]
+  }
+}

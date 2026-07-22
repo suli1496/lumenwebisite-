@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1400" height="700" fill="#f7f6f3"/>
+  <text x="700" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#2a2a28">Print-Ready Flattened Version — Solid Colors Only (no gradients/transparency)</text>
+  <text x="700" y="58" text-anchor="middle" font-size="12" fill="#7a7a76">For embroidery, screen printing, vinyl decals — each color below is a single flat ink/thread</text>
+
+  <!-- VERSION A: Full color, flattened (3 solid inks: navy, silver-gray, red) -->
+  <g transform="translate(230,300)">
+    <rect x="-190" y="-220" width="380" height="440" rx="10" fill="#fff" stroke="#e2e0da" stroke-width="1.5"/>
+    <text x="0" y="-196" text-anchor="middle" font-size="12" letter-spacing="1" fill="#9a9890">A — 3-COLOR FLAT (navy / gray / red)</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <!-- flat beam, single solid gray triangle, no gradient -->
+      <path d="M-10,30 L-200,150 L200,150 L10,30 Z" fill="#9ba0a3"/>
+      <!-- ground line -->
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#0e2a47" stroke-width="5"/>
+      <!-- tower -->
+      <rect x="-23" y="98" width="46" height="52" fill="#0e2a47"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#0e2a47"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#0e2a47"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#0e2a47"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#0e2a47"/>
+      <!-- lens: flat gray ring, flat lens fill -->
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#9ba0a3" stroke-width="4"/>
+      <circle cx="0" cy="30" r="5" fill="#9ba0a3"/>
+      <!-- hat -->
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#0e2a47"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#0e2a47"/>
+      <!-- red dot: flat solid -->
+      <circle cx="0" cy="-13" r="5" fill="#c0392b"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#0e2a47">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#3a3a38">SECURITY</text>
+
+    <!-- swatches -->
+    <rect x="-90" y="195" width="24" height="24" fill="#0e2a47"/>
+    <rect x="-20" y="195" width="24" height="24" fill="#9ba0a3"/>
+    <rect x="50" y="195" width="24" height="24" fill="#c0392b"/>
+  </g>
+
+  <!-- VERSION B: 2-color (navy + white/negative space, no gray) — for single-color embroidery -->
+  <g transform="translate(700,300)">
+    <rect x="-190" y="-220" width="380" height="440" rx="10" fill="#fff" stroke="#e2e0da" stroke-width="1.5"/>
+    <text x="0" y="-196" text-anchor="middle" font-size="12" letter-spacing="1" fill="#9a9890">B — 2-COLOR (navy + red, no gray beam)</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <!-- beam removed entirely for max simplicity, or shown as thin outline only -->
+      <path d="M-10,30 L-200,150 L200,150 L10,30 Z" fill="none" stroke="#0e2a47" stroke-width="2" stroke-dasharray="4 6" opacity="0.4"/>
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#0e2a47" stroke-width="5"/>
+      <rect x="-23" y="98" width="46" height="52" fill="#0e2a47"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#0e2a47"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#0e2a47"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#0e2a47"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#0e2a47"/>
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#0e2a47" stroke-width="4"/>
+      <circle cx="0" cy="30" r="5" fill="#0e2a47"/>
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#0e2a47"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#0e2a47"/>
+      <circle cx="0" cy="-13" r="5" fill="#c0392b"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#0e2a47">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#3a3a38">SECURITY</text>
+
+    <rect x="-55" y="195" width="24" height="24" fill="#0e2a47"/>
+    <rect x="15" y="195" width="24" height="24" fill="#c0392b"/>
+  </g>
+
+  <!-- VERSION C: single color (all navy) — for one-color embroidery/stamp -->
+  <g transform="translate(1170,300)">
+    <rect x="-190" y="-220" width="380" height="440" rx="10" fill="#fff" stroke="#e2e0da" stroke-width="1.5"/>
+    <text x="0" y="-196" text-anchor="middle" font-size="12" letter-spacing="1" fill="#9a9890">C — 1-COLOR (all navy, no beam)</text>
+
+    <g transform="translate(0,-30) scale(0.8) translate(0,-65)">
+      <line x1="-220" y1="150" x2="220" y2="150" stroke="#0e2a47" stroke-width="5"/>
+      <rect x="-23" y="98" width="46" height="52" fill="#0e2a47"/>
+      <rect x="-27" y="146" width="54" height="7" rx="1" fill="#0e2a47"/>
+      <rect x="-15" y="60" width="30" height="38" fill="#0e2a47"/>
+      <rect x="-21" y="47" width="42" height="11" rx="2" fill="#0e2a47"/>
+      <rect x="-15" y="15" width="30" height="32" rx="3" fill="#0e2a47"/>
+      <circle cx="0" cy="30" r="12" fill="none" stroke="#0e2a47" stroke-width="4"/>
+      <circle cx="0" cy="30" r="5" fill="#0e2a47"/>
+      <ellipse cx="0" cy="13" rx="28" ry="5" fill="#0e2a47"/>
+      <path d="M-28,13 Q-9,3 0,-13 Q9,3 28,13 Z" fill="#0e2a47"/>
+      <circle cx="0" cy="-13" r="5" fill="#0e2a47"/>
+    </g>
+
+    <text x="0" y="145" text-anchor="middle" font-size="30" font-weight="700" letter-spacing="3" fill="#0e2a47">LUMEN</text>
+    <text x="0" y="175" text-anchor="middle" font-size="18" letter-spacing="5" fill="#0e2a47">SECURITY</text>
+
+    <rect x="-12" y="195" width="24" height="24" fill="#0e2a47"/>
+  </g>
+
+</svg>
