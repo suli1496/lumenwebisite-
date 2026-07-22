@@ -1,0 +1,336 @@
+<!doctype html>
+<!-- Lumen Security — CREATIEVE SHOWCASE ("wat schuilt er onder de mouwen").
+     Vrije creatieve demo: cinematische canvas-vuurtoren + micro-interacties.
+     Ontwerp-referentie, geen live pagina. Volledig zelfstandig. -->
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumen Security — creatieve showcase</title>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;font-family:var(--ft-tekst);background:#07131f;color:#eaf0f6;overflow-x:hidden;}
+  h1,h2,h3{font-family:var(--ft-titel);margin:0;line-height:1.1;text-wrap:balance;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== CINEMATISCHE HERO (canvas) ===== */
+  .stage{position:relative;height:100svh;min-height:620px;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% -20%,#173a5c 0%,#0e2a47 45%,#04101c 100%);}
+  #sky{position:absolute;inset:0;display:block;}
+  .stage .overlay{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:0 24px;z-index:3;pointer-events:none;}
+  .stage .eyebrow{font-size:13px;letter-spacing:4px;text-transform:uppercase;font-weight:600;
+    color:#e8b4a0;opacity:0;transform:translateY(14px);animation:rise .9s ease .3s forwards;}
+  .stage h1{font-size:clamp(40px,6.4vw,86px);color:#fff;margin:16px 0 10px;
+    opacity:0;transform:translateY(20px);animation:rise 1s ease .55s forwards;
+    text-shadow:0 8px 40px rgba(0,0,0,.5);}
+  .stage h1 em{font-style:normal;color:#ff6b57;}
+  .stage p{max-width:560px;color:#c9d2dc;font-size:18px;line-height:1.6;
+    opacity:0;transform:translateY(20px);animation:rise 1s ease .8s forwards;}
+  .stage .hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    font-size:12px;letter-spacing:2px;color:#7f94a8;text-transform:uppercase;z-index:3;
+    animation:pulseHint 2.4s ease-in-out infinite;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  @keyframes pulseHint{0%,100%{opacity:.4;}50%{opacity:1;}}
+
+  /* ===== "TRUCJES"-STROOK ===== */
+  .tricks{background:#0a1a2b;padding:80px 24px;}
+  .tricks .head{max-width:720px;margin:0 auto 48px;text-align:center;}
+  .tricks .head .kick{color:#e8b4a0;letter-spacing:3px;text-transform:uppercase;font-size:12.5px;font-weight:600;}
+  .tricks h2{font-size:clamp(26px,3.4vw,38px);color:#fff;margin:12px 0;}
+  .tricks .head p{color:#9fb0c1;line-height:1.6;}
+  .grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .demo{position:relative;background:#0f2334;border:1px solid #1c3348;border-radius:16px;
+    padding:28px;min-height:200px;display:flex;flex-direction:column;overflow:hidden;}
+  .demo .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6f8ba3;margin-bottom:auto;}
+  .demo h3{color:#fff;font-size:20px;margin:14px 0 6px;}
+  .demo p{color:#9fb0c1;font-size:13.5px;line-height:1.5;margin:0;}
+
+  /* trucje 1: meetellende cijfers */
+  .count{font-family:var(--ft-titel);font-weight:700;font-size:52px;color:#fff;line-height:1;}
+  .count .u{color:#ff6b57;}
+
+  /* trucje 2: typemachine */
+  .type{font-family:var(--ft-titel);font-size:22px;color:#fff;min-height:1.4em;}
+  .type .cursor{color:#ff6b57;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* trucje 3: kantelkaart op muis (3D) */
+  .tilt{transition:transform .1s ease;transform-style:preserve-3d;}
+  .tilt .chip{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:14px;
+    background:linear-gradient(135deg,#c0392b,#8b1a1a);box-shadow:0 12px 30px rgba(192,57,43,.4);}
+  .tilt .chip svg{width:32px;height:32px;}
+
+  /* trucje 4: scan-onthulling van het logo */
+  .scanbox{position:relative;border-radius:12px;overflow:hidden;background:#07131f;height:120px;
+    display:grid;place-items:center;margin-top:6px;}
+  .scanbox img{width:78%;filter:brightness(0) invert(1);opacity:.14;}
+  .scanbox .lit{position:absolute;inset:0;display:grid;place-items:center;
+    clip-path:inset(0 100% 0 0);}
+  .scanbox .lit img{opacity:1;filter:none;}
+  .scanbox .line{position:absolute;top:0;bottom:0;width:2px;background:#ff6b57;
+    box-shadow:0 0 16px 3px rgba(255,107,87,.7);left:0;}
+  .scanbox.run .lit{animation:reveal 2.6s ease-in-out infinite;}
+  .scanbox.run .line{animation:sweep 2.6s ease-in-out infinite;}
+  @keyframes reveal{0%{clip-path:inset(0 100% 0 0);}45%,55%{clip-path:inset(0 0 0 0);}100%{clip-path:inset(0 0 0 100%);}}
+  @keyframes sweep{0%{left:0;}50%{left:100%;}100%{left:100%;}}
+
+  /* trucje 5: magnetische knop */
+  .magnet-wrap{display:flex;align-items:center;justify-content:center;flex:1;}
+  .magnet{padding:16px 30px;border-radius:999px;background:#ff6b57;color:#0e2a47;font-weight:700;
+    font-family:var(--ft-titel);cursor:pointer;transition:transform .12s ease;will-change:transform;}
+
+  /* trucje 6: gloed-volgt-muis kaart */
+  .spot{position:relative;}
+  .spot::before{content:"";position:absolute;inset:0;border-radius:16px;opacity:0;transition:opacity .3s;
+    background:radial-gradient(180px circle at var(--mx,50%) var(--my,50%),rgba(255,107,87,.18),transparent 60%);}
+  .spot:hover::before{opacity:1;}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  .footer{background:#07131f;text-align:center;padding:40px 24px;color:#6f8ba3;font-size:13px;}
+
+  @media(max-width:860px){.grid{grid-template-columns:1fr;}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}
+    .stage .eyebrow,.stage h1,.stage p{opacity:1;transform:none;}
+    .scanbox .lit{clip-path:inset(0 0 0 0);}.scanbox .line{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- ============ CINEMATISCHE HERO ============ -->
+<section class="stage">
+  <canvas id="sky"></canvas>
+  <div class="overlay">
+    <div class="eyebrow">Waar licht is, begint bescherming</div>
+    <h1>Wij houden de <em>wacht</em>.</h1>
+    <p>Beweeg je muis — de lichtbundel volgt. Camerabewaking, brandbeveiliging en 24/7 monitoring.</p>
+  </div>
+  <div class="hint">beweeg de muis · scroll voor meer</div>
+</section>
+
+<!-- ============ TRUCJES ============ -->
+<section class="tricks">
+  <div class="head reveal">
+    <div class="kick">Onder de mouwen</div>
+    <h2>Een greep uit wat er kan</h2>
+    <p>Kleine interacties die een site levend maken — allemaal in de merkkleuren en zonder externe bibliotheken.</p>
+  </div>
+  <div class="grid">
+
+    <div class="demo spot reveal">
+      <span class="tag">Meetellende cijfers</span>
+      <div class="count" data-to="24" data-suffix="/7"><span class="n">0</span><span class="u">/7</span></div>
+      <h3>Cijfers die oplopen</h3>
+      <p>Getallen tellen op zodra ze in beeld komen — ideaal voor cijfers en resultaten.</p>
+    </div>
+
+    <div class="demo spot reveal">
+      <span class="tag">Typemachine</span>
+      <div class="type"><span class="typed"></span><span class="cursor">|</span></div>
+      <h3>Tekst die zichzelf typt</h3>
+      <p>Wisselende kernwoorden verschijnen letter voor letter.</p>
+    </div>
+
+    <div class="demo spot reveal">
+      <span class="tag">3D-kantel op muis</span>
+      <div class="tilt" style="margin:8px 0 auto;">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h9l3-2v10l-3-2H5a2 2 0 0 1-2-2V8z"/><circle cx="18.5" cy="12" r="1"/></svg></span>
+      </div>
+      <h3>Kaart die meekantelt</h3>
+      <p>Beweeg over de kaart — hij kantelt subtiel mee in 3D.</p>
+    </div>
+
+    <div class="demo reveal">
+      <span class="tag">Scan-onthulling</span>
+      <div class="scanbox run">
+        <img src="../assets/img/logo/lumen-logo-lockup.jpg" alt="Lumen logo">
+        <div class="lit"><img src="../assets/img/logo/lumen-logo-lockup.jpg" alt=""></div>
+        <div class="line"></div>
+      </div>
+      <h3>Onthullen met een lichtstraal</h3>
+      <p>Een scanlijn "leest" het logo en licht het op — knipoog naar bewaking.</p>
+    </div>
+
+    <div class="demo spot reveal">
+      <span class="tag">Magnetische knop</span>
+      <div class="magnet-wrap"><button class="magnet" type="button">Vraag een offerte</button></div>
+      <h3>Knop die je aantrekt</h3>
+      <p>De knop beweegt licht naar je cursor toe — speels en tactiel.</p>
+    </div>
+
+    <div class="demo spot reveal">
+      <span class="tag">Gloed volgt de muis</span>
+      <div style="flex:1;display:grid;place-items:center;">
+        <svg viewBox="-40 -30 80 70" style="width:88px;"><g><path d="M-8,2 L-34,26 L34,26 L8,2 Z" fill="#9BA0A3" opacity="0.3"/><rect x="-9" y="12" width="18" height="14" fill="#fff"/><rect x="-6" y="1" width="12" height="12" rx="1.5" fill="#fff"/><circle cx="0" cy="7" r="4.5" fill="none" stroke="#B9BCBE" stroke-width="1.6"/><circle cx="0" cy="7" r="1.8" fill="#e8b4a0"/><ellipse cx="0" cy="0" rx="11" ry="2" fill="#fff"/><path d="M-11,0 Q-3.5,-4 0,-10 Q3.5,-4 11,0 Z" fill="#fff"/><circle cx="0" cy="-10" r="2" fill="#C0392B"/></g></svg>
+      </div>
+      <h3>Zachte gloed onder de cursor</h3>
+      <p>Beweeg over deze kaart — een warme gloed volgt je muis.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="footer">Creatieve showcase · Lumen Security · ontwerp-referentie (niet live)</div>
+
+<script>
+/* ========== 1. CINEMATISCHE VUURTOREN OP CANVAS ========== */
+(function(){
+  var c = document.getElementById('sky'), x = c.getContext('2d');
+  var W,H,DPR, particles=[], mouse={x:.5,y:.35}, t=0;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function size(){
+    DPR = Math.min(devicePixelRatio||1, 2);
+    W = c.clientWidth; H = c.clientHeight;
+    c.width = W*DPR; c.height = H*DPR; x.setTransform(DPR,0,0,DPR,0,0);
+    particles = [];
+    var n = Math.min(90, Math.floor(W/16));
+    for(var i=0;i<n;i++) particles.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.8+.4, s:Math.random()*.4+.1, o:Math.random()*.5+.2
+    });
+  }
+  window.addEventListener('resize', size);
+
+  addEventListener('mousemove', function(e){
+    var r = c.getBoundingClientRect();
+    mouse.x = (e.clientX - r.left)/r.width;
+    mouse.y = (e.clientY - r.top)/r.height;
+  });
+
+  function draw(){
+    t += .016;
+    x.clearRect(0,0,W,H);
+
+    // bron van de bundel: de lantaarn van de vuurtoren (onderaan-midden)
+    var sx = W*0.5, sy = H*0.92;
+
+    // doelhoek: naar de muis (of zachtjes zwaaiend als geen muis)
+    var tx = mouse.x*W, ty = mouse.y*H;
+    var ang = Math.atan2(ty - sy, tx - sx);
+    if(reduce) ang = -Math.PI/2 + Math.sin(t*.3)*.5;
+
+    // ---- lichtbundel (kegel, rood->zilver) ----
+    var spread = 0.26, len = Math.hypot(W,H)*1.1;
+    var g = x.createLinearGradient(sx,sy, sx+Math.cos(ang)*len, sy+Math.sin(ang)*len);
+    g.addColorStop(0,'rgba(192,57,43,0.42)');
+    g.addColorStop(0.35,'rgba(155,80,70,0.18)');
+    g.addColorStop(0.7,'rgba(185,188,190,0.10)');
+    g.addColorStop(1,'rgba(199,202,204,0)');
+    x.beginPath(); x.moveTo(sx,sy);
+    x.lineTo(sx+Math.cos(ang-spread)*len, sy+Math.sin(ang-spread)*len);
+    x.lineTo(sx+Math.cos(ang+spread)*len, sy+Math.sin(ang+spread)*len);
+    x.closePath(); x.fillStyle=g; x.fill();
+
+    // ---- lichtdeeltjes die in de bundel oplichten ----
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i]; p.y -= p.s; if(p.y<-4){p.y=H+4; p.x=Math.random()*W;}
+      // hoe dicht bij de bundel-as?
+      var pa = Math.atan2(p.y-sy, p.x-sx);
+      var d = Math.abs(((pa-ang+Math.PI*3)%(Math.PI*2))-Math.PI);
+      var lit = Math.max(0, 1 - d/spread);
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,7);
+      x.fillStyle='rgba(232,180,160,'+(p.o*.25 + lit*.6)+')'; x.fill();
+    }
+
+    // ---- vuurtoren-silhouet ----
+    x.save(); x.translate(sx,sy);
+    x.fillStyle='#040d16';
+    x.fillRect(-26,-4,52,4);           // grond
+    x.fillRect(-14,-40,28,38);         // onderromp
+    x.fillRect(-10,-64,20,24);         // bovenromp
+    x.fillRect(-12,-74,24,10);         // galerij
+    // lantaarn-gloed
+    var lg = x.createRadialGradient(0,-80,0, 0,-80,20);
+    lg.addColorStop(0,'rgba(232,180,160,0.9)'); lg.addColorStop(1,'rgba(232,180,160,0)');
+    x.fillStyle=lg; x.beginPath(); x.arc(0,-80,20,0,7); x.fill();
+    x.fillStyle='#0e2a47'; x.beginPath(); x.arc(0,-80,6,0,7); x.fill();
+    // hoed
+    x.fillStyle='#040d16'; x.beginPath();
+    x.moveTo(-16,-88); x.quadraticCurveTo(0,-104,16,-88); x.closePath(); x.fill();
+    // rode beacon-dot (pulserend)
+    var pulse = .6 + Math.sin(t*3)*.4;
+    x.beginPath(); x.arc(0,-96,3.4,0,7); x.fillStyle='#ff5540'; x.fill();
+    x.beginPath(); x.arc(0,-96,3.4+pulse*5,0,7);
+    x.fillStyle='rgba(255,85,64,'+(0.25*pulse)+')'; x.fill();
+    x.restore();
+
+    requestAnimationFrame(draw);
+  }
+  size(); draw();
+})();
+
+/* ========== 2. TYPEMACHINE ========== */
+(function(){
+  var el = document.querySelector('.typed'); if(!el) return;
+  var words = ['camerabewaking','brandbeveiliging','24/7 monitoring','onderhoud'];
+  var wi=0, ci=0, del=false;
+  function tick(){
+    var w = words[wi];
+    el.textContent = w.slice(0, ci);
+    if(!del && ci<w.length){ ci++; setTimeout(tick,70); }
+    else if(!del && ci===w.length){ del=true; setTimeout(tick,1100); }
+    else if(del && ci>0){ ci--; setTimeout(tick,40); }
+    else { del=false; wi=(wi+1)%words.length; setTimeout(tick,220); }
+  }
+  tick();
+})();
+
+/* ========== 3. MEETELLENDE CIJFERS (bij in-beeld) ========== */
+/* ========== 4. REVEAL-ON-SCROLL ========== */
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      var cnt = e.target.querySelector('.count .n');
+      if(cnt && !cnt.dataset.done){
+        cnt.dataset.done=1; var to=+e.target.querySelector('.count').dataset.to||24, s=0;
+        var iv=setInterval(function(){ s++; cnt.textContent=s; if(s>=to) clearInterval(iv); }, 900/to);
+      }
+      io.unobserve(e.target);
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.reveal').forEach(function(n){io.observe(n);});
+})();
+
+/* ========== 5. 3D-KANTELKAART ========== */
+(function(){
+  document.querySelectorAll('.tilt').forEach(function(card){
+    var box = card.closest('.demo');
+    box.addEventListener('mousemove', function(e){
+      var r=box.getBoundingClientRect();
+      var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform='perspective(600px) rotateY('+(px*16)+'deg) rotateX('+(-py*16)+'deg)';
+    });
+    box.addEventListener('mouseleave', function(){ card.style.transform=''; });
+  });
+})();
+
+/* ========== 6. MAGNETISCHE KNOP ========== */
+(function(){
+  document.querySelectorAll('.magnet').forEach(function(b){
+    b.addEventListener('mousemove', function(e){
+      var r=b.getBoundingClientRect();
+      b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.4)+'px,'+((e.clientY-r.top-r.height/2)*.5)+'px)';
+    });
+    b.addEventListener('mouseleave', function(){ b.style.transform=''; });
+  });
+})();
+
+/* ========== 7. GLOED VOLGT DE MUIS ========== */
+(function(){
+  document.querySelectorAll('.spot').forEach(function(s){
+    s.addEventListener('mousemove', function(e){
+      var r=s.getBoundingClientRect();
+      s.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      s.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+})();
+</script>
+</body>
+</html>
