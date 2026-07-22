@@ -16,10 +16,11 @@
   color:#9aa0a0;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
 }
 
-/* Lichte sluier zodat de tekst leesbaar blijft over de foto */
+/* Lichte sluier zodat de tekst leesbaar blijft over de foto.
+   Behandeling B (sterkere sluier) — gekozen. Fijn te regelen op de echte foto. */
 .hero .scrim{
   position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--bg) 0 44%,rgba(247,246,243,.72) 60%,rgba(247,246,243,.2) 100%);
+  background:linear-gradient(90deg,var(--bg) 0 52%,rgba(247,246,243,.88) 68%,rgba(247,246,243,.35) 100%);
 }
 
 .hero-inner{
