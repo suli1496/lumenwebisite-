@@ -32,12 +32,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* ---- 3. cinematische hero ---- */
+  /* ---- 3a. DAG: bundel van de SVG-vuurtoren volgt de muis ---- */
+  initHeroBeam();
+
+  /* ---- 3b. NACHT: cinematische canvas-scène ---- */
   initHeroScene();
 
   /* ---- 4. meetellende cijfers ---- */
   initCountUp();
 });
+
+/* ============================================================
+   DAG-vuurtoren: de SVG-bundel draait mee met de muis.
+   De lensring (.lumen-lens-point) blijft altijd op zijn plaats.
+   ============================================================ */
+function initHeroBeam() {
+  var beam = document.querySelector(".hero-visual .lumen-beam");
+  if (!beam) return;
+  var svg = beam.closest("svg");
+  var pivot = svg ? svg.querySelector(".lumen-lens-point") : null;
+  if (!pivot) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var lens = (beam.getAttribute("data-lens") || "0,0").split(",").map(Number);
+  var lensX = lens[0], lensY = lens[1], current = 0, target = 0;
+
+  window.addEventListener("mousemove", function (e) {
+    var r = pivot.getBoundingClientRect();
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    target = Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI - 90;
+  });
+  (function tick() {
+    current += (target - current) * 0.09;
+    beam.setAttribute("transform", "rotate(" + current.toFixed(2) + " " + lensX + " " + lensY + ")");
+    requestAnimationFrame(tick);
+  })();
+}
 
 /* ============================================================
    Cinematische vuurtoren op canvas (variant A: toren rechts)
