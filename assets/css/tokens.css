@@ -66,12 +66,17 @@
   --ghost-text:#0E2A47;
   --ghost-hover:rgba(14,42,71,.06);
 
-  /* Hero-scène (de cinematische canvas-vuurtoren, nachtmodus) */
-  --scene-top:#eef0ef;
-  --scene-bottom:#F7F6F3;
-  --scene-tower:#0e2a47;
-  --scene-particle:14,42,71;
-  --scene-beam-strong:.30;
+  /* Hero-scène (de cinematische canvas-vuurtoren, nu in DAG én NACHT) */
+  --scene-top:#eef0ef;      /* bovenkant lucht (dag) */
+  --scene-bottom:#F7F6F3;   /* onderkant lucht (dag) */
+  --scene-tower:#0e2a47;    /* silhouet van de toren */
+  --scene-particle:14,42,71;/* deeltjes-kleur (RGB) */
+  --scene-beam-strong:.34;  /* bundel-intensiteit (dag, iets zachter) */
+
+  /* Vorm-instellingen van de scène (thema-onafhankelijk — makkelijk te tunen) */
+  --scene-spread:.24;       /* breedte van de lichtbundel */
+  --scene-tower-scale:1;    /* grootte van de vuurtoren */
+  --scene-src-x:.72;        /* horizontale positie van de vuurtoren (0..1) */
 }
 
 /* ============ NACHT-THEMA (gespiegeld) ============ */

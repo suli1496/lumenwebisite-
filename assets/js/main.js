@@ -79,6 +79,7 @@ function initHeroScene() {
 
   var W, H, DPR, particles = [], mouse = null, t = 0, col;
 
+  function num(v, d) { v = parseFloat(v); return isNaN(v) ? d : v; }
   function theme() {
     var s = getComputedStyle(document.documentElement);
     col = {
@@ -86,7 +87,10 @@ function initHeroScene() {
       bottom: s.getPropertyValue("--scene-bottom").trim() || "#F7F6F3",
       tower:  s.getPropertyValue("--scene-tower").trim()  || "#0e2a47",
       part:   s.getPropertyValue("--scene-particle").trim() || "14,42,71",
-      beam:   parseFloat(s.getPropertyValue("--scene-beam-strong")) || 0.3
+      beam:   num(s.getPropertyValue("--scene-beam-strong"), 0.3),
+      spread: num(s.getPropertyValue("--scene-spread"), 0.24),
+      tscale: num(s.getPropertyValue("--scene-tower-scale"), 1),
+      srcx:   num(s.getPropertyValue("--scene-src-x"), 0.72)
     };
   }
   window.addEventListener("themechange", theme);
@@ -105,8 +109,8 @@ function initHeroScene() {
   }
   window.addEventListener("resize", size);
 
-  // bron van het licht (de lantaarn) — rechts in beeld
-  function src() { return { x: W * 0.72, y: H * 0.60 }; }
+  // bron van het licht (de lantaarn) — horizontale positie is instelbaar
+  function src() { return { x: W * col.srcx, y: H * 0.60 }; }
 
   c.closest(".hero").addEventListener("mousemove", function (e) {
     var r = c.getBoundingClientRect();
@@ -126,7 +130,7 @@ function initHeroScene() {
     else ang = -Math.PI / 2 + Math.sin(t * .35) * .5;
 
     // lichtbundel (kegel rood -> zilver)
-    var spread = 0.24, len = Math.hypot(W, H) * 1.1;
+    var spread = col.spread, len = Math.hypot(W, H) * 1.1;
     var g = x.createLinearGradient(s.x, s.y, s.x + Math.cos(ang) * len, s.y + Math.sin(ang) * len);
     g.addColorStop(0, "rgba(192,57,43," + col.beam + ")");
     g.addColorStop(0.4, "rgba(155,80,70," + (col.beam * 0.4) + ")");
@@ -148,7 +152,7 @@ function initHeroScene() {
     }
 
     // vuurtoren-silhouet
-    x.save(); x.translate(s.x, s.y); var k = Math.max(1, H / 560);
+    x.save(); x.translate(s.x, s.y); var k = Math.max(1, H / 560) * col.tscale;
     x.scale(k, k);
     x.fillStyle = col.tower;
     x.fillRect(-40, 92, 80, 4);
