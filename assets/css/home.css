@@ -1,14 +1,21 @@
 /* ============================================================
-   home.css — homepage: hero (MIX 1) + diensten + waarom + oproep
+   home.css — homepage: hero + diensten + waarom + oproep
+   Alle kleuren via de thema-tokens uit tokens.css, zodat dag en
+   nacht hetzelfde sjabloon delen (gespiegeld).
+
+   HERO:
+   - DAG  = MIX 1: foto-achtergrond + sluier B + scherpe SVG-vuurtoren
+            rechts; de lichtbundel volgt de muis (main.js).
+   - NACHT = cinematische canvas-scène (main.js): vuurtoren met
+            muis-volgende bundel en lichtdeeltjes.
    ============================================================ */
 
-/* --- HERO (MIX 1: foto-achtergrond + baken-overlay) --- */
 .hero{position:relative;overflow:hidden;background:var(--bg);}
 
-/* Placeholder-foto. Later vervangen door een echte projectfoto:
+/* DAG — placeholder-foto (MIX 1). Later vervangen door een echte projectfoto:
    .hero .photo{ background:url("../img/hero/....jpg") center/cover; } */
 .hero .photo{
-  position:absolute;inset:0;
+  position:absolute;inset:0;transition:opacity .45s ease;
   background:repeating-linear-gradient(45deg,#e4e5e2 0 24px,#dcdeda 24px 48px);
 }
 .hero .photo .tag{
@@ -16,65 +23,94 @@
   color:#9aa0a0;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
 }
 
-/* Lichte sluier zodat de tekst leesbaar blijft over de foto.
-   Behandeling B (sterkere sluier) — gekozen. Fijn te regelen op de echte foto. */
+/* NACHT — cinematische canvas-scène (standaard verborgen) */
+.hero .scene{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  opacity:0;transition:opacity .45s ease;pointer-events:none;
+}
+
+/* Leesbaarheids-sluier (behandeling B): sterker aan de tekstzijde (links) */
 .hero .scrim{
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--bg) 0 52%,rgba(247,246,243,.88) 68%,rgba(247,246,243,.35) 100%);
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,
+     var(--bg) 0 52%,
+     color-mix(in srgb, var(--bg) 82%, transparent) 68%,
+     transparent 92%);
 }
 
 .hero-inner{
-  position:relative;z-index:1;
+  position:relative;z-index:2;
   display:flex;align-items:center;gap:56px;
-  padding:44px 48px 64px;
+  min-height:clamp(460px,68vh,640px);
+  padding:56px 48px 64px;
+  max-width:var(--max);margin:0 auto;
 }
-.hero-content{max-width:560px;}
-.hero-content h1{font-size:clamp(36px,4.6vw,58px);margin-bottom:24px;}
-.hero .sub{font-size:17px;line-height:1.65;max-width:520px;margin-bottom:36px;color:#4a4a48;}
+.hero-content{max-width:560px;flex:none;}
+.hero .eyebrow{color:var(--red);}
+.hero-content h1{font-size:clamp(36px,4.6vw,58px);margin-bottom:24px;color:var(--ink);}
+.hero .sub{font-size:17px;line-height:1.65;max-width:520px;margin-bottom:36px;color:var(--text-soft);}
 .cta-row{display:flex;gap:16px;flex-wrap:wrap;}
 
-.hero .visual{flex:1;display:flex;align-items:center;justify-content:center;}
-.hero .visual svg{width:min(360px,32vw);height:auto;filter:drop-shadow(0 18px 30px rgba(14,42,71,.22));}
+/* DAG: scherpe SVG-vuurtoren rechts (bundel volgt de muis) */
+.hero-visual{flex:1;display:flex;align-items:center;justify-content:center;}
+.hero-visual svg{width:min(360px,32vw);height:auto;filter:drop-shadow(0 18px 30px rgba(14,42,71,.22));transition:opacity .45s ease;}
+
+/* NACHT: canvas aan, foto + SVG uit */
+:root[data-theme="dark"] .hero .scene{opacity:1;}
+:root[data-theme="dark"] .hero .photo{opacity:0;}
+:root[data-theme="dark"] .hero-visual{opacity:0;pointer-events:none;}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .hero .scene{opacity:1;}
+  :root:not([data-theme="light"]) .hero .photo{opacity:0;}
+  :root:not([data-theme="light"]) .hero-visual{opacity:0;pointer-events:none;}
+}
 
 /* --- Algemene sectie-opbouw --- */
 section{padding:90px 0;}
 .section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
 .section-head .eyebrow{display:flex;justify-content:center;}
-.section-head h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:16px;}
-.section-head p{color:#4a4a48;font-size:16px;line-height:1.65;}
+.section-head h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:16px;color:var(--ink);}
+.section-head p{color:var(--text-soft);font-size:16px;line-height:1.65;}
 
 /* --- Diensten --- */
-.services{background:#fff;}
+.services{background:var(--surface);}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
 .service-card{
-  background:var(--bg);border:1px solid var(--line);border-radius:12px;
+  background:var(--surface-sunken);border:1px solid var(--line);border-radius:12px;
   padding:36px 30px;color:inherit;
-  transition:transform .18s ease,box-shadow .18s ease;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
 }
-.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(14,42,71,.08);}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.10);border-color:var(--red);}
 .service-icon{
-  width:52px;height:52px;border-radius:10px;background:var(--navy);
+  width:52px;height:52px;border-radius:10px;background:var(--red);
   display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  box-shadow:0 8px 20px rgba(192,57,43,.28);
 }
 .service-icon svg{width:26px;height:26px;}
-.service-card h3{font-size:20px;margin-bottom:12px;}
-.service-card p{font-size:14.5px;color:#4a4a48;line-height:1.6;margin-bottom:18px;}
+.service-card h3{font-size:20px;margin-bottom:12px;color:var(--ink);}
+.service-card p{font-size:14.5px;color:var(--text-soft);line-height:1.6;margin-bottom:18px;}
 .service-link{font-size:13.5px;font-weight:600;color:var(--red);}
 
-/* --- Waarom Lumen (navy blok) --- */
-.why{background:var(--navy);color:#fff;}
+/* --- Waarom Lumen (contrast-eiland dat omdraait per thema) --- */
+.why{background:var(--panel-bg);color:var(--panel-text);}
 .why .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.why h2{color:#fff;}
-.why .eyebrow{color:var(--silver);}
-.why p{color:#c9d2dc;font-size:16px;line-height:1.7;margin-bottom:28px;}
+.why h2{color:var(--panel-text);}
+.why .eyebrow{color:var(--panel-eyebrow);}
+.why p{color:var(--panel-soft);font-size:16px;line-height:1.7;margin-bottom:28px;}
 .why-points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;}
-.why-points li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:#e4e8ec;}
+.why-points li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--panel-text);opacity:.92;}
 .why-points .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:7px;}
+
+/* --- Meetellende cijfers (tellen op zodra ze in beeld komen) --- */
+.why-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:34px;}
+.why-stat .num{font-family:var(--ft-titel);font-weight:700;font-size:42px;line-height:1;color:var(--panel-text);}
+.why-stat .num .u{color:var(--red);}
+.why-stat .lbl{font-size:13px;color:var(--panel-soft);margin-top:6px;letter-spacing:.3px;}
 
 /* --- Oproep-blok --- */
 .cta-banner{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;}
-.cta-banner h2{margin-bottom:16px;}
-.cta-banner p{color:#4a4a48;margin:0 auto 32px;max-width:520px;}
+.cta-banner h2{margin-bottom:16px;color:var(--ink);}
+.cta-banner p{color:var(--text-soft);margin:0 auto 32px;max-width:520px;}
 
 /* --- Responsief --- */
 @media (max-width:980px){
@@ -82,8 +118,14 @@ section{padding:90px 0;}
   .why .container{grid-template-columns:1fr;}
 }
 @media (max-width:820px){
-  .hero-inner{flex-direction:column;text-align:left;align-items:flex-start;gap:30px;padding:24px 22px 50px;}
-  .hero .visual svg{width:60vw;}
+  .hero-inner{flex-direction:column;align-items:flex-start;gap:30px;padding:40px 22px 48px;min-height:auto;}
+  .hero-visual{width:100%;}
+  .hero-visual svg{width:60vw;}
+  .hero .scrim{background:linear-gradient(180deg,var(--bg) 0 46%,color-mix(in srgb,var(--bg) 60%,transparent) 100%);}
   .container{padding:0 22px;}
   section{padding:60px 0;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .service-card{transition:none;}
 }

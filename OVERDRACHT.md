@@ -59,8 +59,14 @@ niet rond. Bovenaan elke pagina staat een tijdelijke "ontwerp-preview"-melding.
   SVG-vuurtoren met lichtbundel + vertrouwensbalk.
 - **Hero-sluier:** **behandeling B** gekozen (sterkere sluier links voor
   leesbaarheid). Fijn af te regelen zodra de echte hero-foto er is.
-- **Donkere modus:** **MIX 4** (foto + navy-tint + lichtbundel, lichte tekst)
-  bewaard als template in `design/` voor later.
+- **Dag/nacht-thema:** volledige lichte + donkere modus met **wissel-knop**
+  (onthoudt keuze via localStorage, volgt ook het systeemthema). Gespiegelde
+  tokens in `tokens.css`. Afgestemd op de referentie-artifact uit de 2e chat.
+- **Interactieve hero:** DAG = MIX 1 (foto + sluier B) met SVG-vuurtoren waarvan
+  de **lichtbundel de muis volgt**; NACHT = cinematische **canvas-vuurtoren**
+  (bundel volgt de muis + lichtdeeltjes). Kleine logo's **knipperen** zachtjes.
+- **Donkere modus:** live (zie boven). `design/donkere-modus-hero.html` (MIX 4)
+  blijft als alternatief bewaard.
 - **Fonts:** lokaal zelf-gehost (uit de goede variant geëxtraheerd).
 
 ## 7. Bestandsstructuur (wat er staat)
@@ -101,5 +107,5 @@ design/ hero-mixen-referentie.html + README  → o.a. MIX 4 (dark-template)
       Over ons, Realisaties, Nieuws, Privacy/cookies).
 - [ ] Definitieve teksten samen schrijven (NL), daarna FR + EN vertalen.
 - [ ] Taalkeuze (`i18n.js`) werkend maken.
-- [ ] Donkere modus uitwerken vanuit de MIX 4-template.
+- [x] Dag/nacht-thema + interactieve hero (muis-bundel, canvas-nacht, knipperlens).
 - [ ] Favicon + metagegevens (Open Graph) per pagina.
