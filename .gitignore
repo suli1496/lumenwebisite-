@@ -9,3 +9,19 @@ Desktop.ini
 # Editor/tijdelijke bestanden
 *~
 *.tmp
+
+# SEO Machine tooling (zie seomachine-docs/) — API-sleutels en gegenereerde content
+.env
+data_sources/config/.env
+data_sources/config/*_credentials.json
+data_sources/config/*_config.json
+data_sources/cache/*
+!data_sources/cache/.gitkeep
+config/competitors.json
+ga4-credentials.json
+google-analytics-credentials.json
+__pycache__/
+*.py[cod]
+.pytest_cache/
+venv/
+.venv/

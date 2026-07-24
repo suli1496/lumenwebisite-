@@ -8,6 +8,16 @@ This is the marketing website for **Lumen Security**, a Belgian security company
 
 The working language of the project (content, code comments, commit messages) is **Dutch**. Keep new comments and commit messages in Dutch to stay consistent with the existing codebase.
 
+## SEO Machine (experimenteel, alleen op deze branch)
+
+Deze branch (`claude/seomachine-setup-g5mvev`) bevat een geïmporteerde kopie van [SEO Machine](https://github.com/TheCraigHewitt/seomachine): een set Claude Code commands (`.claude/commands/`), agents (`.claude/agents/`), skills (`.claude/skills/`) en Python-analysemodules (`data_sources/`) voor het onderzoeken en schrijven van SEO-content. Dit is een test — nog niet samengevoegd met `main`.
+
+Let op bij gebruik:
+- De `context/*.md`-bestanden zijn nog de lege sjablonen uit het originele project (zie `examples/castos/` als voorbeeld van een volledig ingevuld project) en moeten met Lumen Security-informatie ingevuld worden voordat `/write`, `/research` etc. bruikbare output geven.
+- De WordPress-publicatiecommando's (`/publish-draft`, `/landing-publish`) zijn **niet van toepassing** op deze site: dit blijft een statische HTML-site zonder WordPress-backend. Alleen research/schrijf-commando's die naar `drafts/`, `research/` etc. wegschrijven zijn relevant.
+- Python-afhankelijkheden voor de analysemodules staan in `data_sources/requirements.txt`; API-sleutels horen in een lokale `.env` (zie `.env.example`), nooit gecommit.
+- Volledige documentatie van het toolkit staat in `seomachine-docs/` (README, quick start).
+
 For full project history/context and the reasoning behind design decisions, read **`OVERDRACHT.md`** (project handover notes, kept up to date with each major decision) and **`VERSIES.md`** (branch map + git cheat sheet) before making non-trivial changes.
 
 ## No build system — plain static site
