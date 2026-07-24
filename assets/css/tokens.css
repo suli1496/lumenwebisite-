@@ -71,12 +71,12 @@
   --scene-bottom:#F7F6F3;   /* onderkant lucht (dag) */
   --scene-tower:#0e2a47;    /* silhouet van de toren */
   --scene-particle:14,42,71;/* deeltjes-kleur (RGB) */
-  --scene-beam-strong:.34;  /* bundel-intensiteit (dag, iets zachter) */
+  --scene-beam-strong:.44;  /* bundel-intensiteit (dag) — gekozen in de tuner */
 
-  /* Vorm-instellingen van de scène (thema-onafhankelijk — makkelijk te tunen) */
-  --scene-spread:.24;       /* breedte van de lichtbundel */
-  --scene-tower-scale:1;    /* grootte van de vuurtoren */
-  --scene-src-x:.72;        /* horizontale positie van de vuurtoren (0..1) */
+  /* Vorm-instellingen van de scène (thema-onafhankelijk) — gekozen in de tuner */
+  --scene-spread:.27;       /* breedte van de lichtbundel */
+  --scene-tower-scale:1.4;  /* grootte van de vuurtoren */
+  --scene-src-x:.73;        /* horizontale positie van de vuurtoren (0..1) */
 }
 
 /* ============ NACHT-THEMA (gespiegeld) ============ */
